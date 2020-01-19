@@ -1,9 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Widget = ({ items, checkItem }) => {
+const Widget = ({
+  items,
+  basket,
+  selectItem,
+  addItemToBasket,
+  removeItemFromBasket,
+}) => {
   const handleChangeCheckbox = id => {
-    checkItem(id);
+    const { title, isChecked } = items[id];
+
+    if (!isChecked && basket.length === 3) {
+      return;
+    }
+
+    if (isChecked) {
+      removeItemFromBasket(id);
+    } else {
+      addItemToBasket(id, title);
+    }
+
+    selectItem(id);
   };
 
   return (
@@ -27,7 +45,10 @@ const Widget = ({ items, checkItem }) => {
 
 Widget.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  checkItem: PropTypes.func.isRequired,
+  basket: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectItem: PropTypes.func.isRequired,
+  addItemToBasket: PropTypes.func.isRequired,
+  removeItemFromBasket: PropTypes.func.isRequired,
 };
 
 export default Widget;

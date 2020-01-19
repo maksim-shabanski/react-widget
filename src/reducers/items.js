@@ -1,4 +1,4 @@
-import { CHECK_ITEM } from 'constants/actionTypes';
+import { SELECT_ITEM } from 'constants/actionTypes';
 
 const initialState = [...new Array(300)].map((item, index) => ({
   id: index,
@@ -8,7 +8,7 @@ const initialState = [...new Array(300)].map((item, index) => ({
 
 const items = (state = initialState, { type, id }) => {
   switch (type) {
-    case CHECK_ITEM:
+    case SELECT_ITEM:
       return [...state].map(item => {
         if (item.id === id) {
           item.isChecked = !item.isChecked;

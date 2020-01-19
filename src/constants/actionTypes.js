@@ -1,2 +1,6 @@
-// eslint-disable-next-line
-export const CHECK_ITEM = 'CHECK_ITEM';
+/* Items */
+export const SELECT_ITEM = 'SELECT_ITEM';
+
+/* Busket */
+export const ADD_ITEM_TO_BASKET = 'ADD_ITEM_TO_BASKET';
+export const REMOVE_ITEM_FROM_BASKET = 'REMOVE_ITEM_FROM_BASKET';
