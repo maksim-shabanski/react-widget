@@ -1,5 +1,12 @@
 import React from 'react';
+import WidgetContainer from 'containers/WidgetContainer';
 
-const Root = () => <h1>React widget</h1>;
+const Root = () => {
+  return (
+    <main>
+      <WidgetContainer />
+    </main>
+  );
+};
 
 export default Root;
