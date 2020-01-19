@@ -1,0 +1,16 @@
+.widget {
+	max-width: 300px;
+	width: 100%;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__body {
+		overflow: scroll;
+		max-height: 200px;
+		height: 100%;
+	}
+}

@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import TagGroupContainer from 'containers/TagGroupConteiner';
+import './widget.scss';
 
 const Widget = ({
   items,
@@ -8,6 +11,16 @@ const Widget = ({
   addItemToBasket,
   removeItemFromBasket,
 }) => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearchChange = ({ target: { value } }) => {
+    setSearchText(value);
+  };
+
+  const filterItems = () => {
+    return items.filter(item => item.title.indexOf(searchText) >= 0);
+  };
+
   const handleChangeCheckbox = id => {
     const { title, isChecked } = items[id];
 
@@ -24,21 +37,57 @@ const Widget = ({
     selectItem(id);
   };
 
+  const filteredItems = filterItems();
+
   return (
     <div className="widget">
-      {items.map(({ id, title, isChecked }) => (
-        <div key={id}>
-          <label htmlFor={`item-${id}`}>
+      <div className="widget__header">
+        <div className="widget__search">
+          <label htmlFor="idget-search">
+            Поиск
             <input
-              id={`item-${id}`}
-              type="checkbox"
-              checked={isChecked}
-              onChange={() => handleChangeCheckbox(id)}
+              id="widget-search"
+              value={searchText}
+              type="text"
+              onChange={handleSearchChange}
             />
-            {title}
           </label>
         </div>
-      ))}
+        <div className="widget__filter">
+          Фильтр
+          <select>
+            <option value="0">Без фильтра</option>
+            <option value="1">Номер &gt; 10</option>
+            <option value="2">Номер &gt; 100</option>
+            <option value="3">Номер &gt; 200</option>
+          </select>
+        </div>
+      </div>
+      <div className="widget__body">
+        {filteredItems.map(({ id, title, isChecked }) => (
+          <div key={id}>
+            <label htmlFor={`item-${id}`}>
+              <input
+                id={`item-${id}`}
+                type="checkbox"
+                checked={isChecked}
+                onChange={() => handleChangeCheckbox(id)}
+              />
+              {title}
+            </label>
+          </div>
+        ))}
+      </div>
+      <div className="widget__footer">
+        <div>
+          Выбранные элементы на данный момент:
+          <TagGroupContainer />
+        </div>
+        <div className="widget__actions">
+          <button type="button">Сохранить</button>
+          <button type="button">Отменить</button>
+        </div>
+      </div>
     </div>
   );
 };
