@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import TagGroupContainer from 'containers/TagGroupConteiner';
+
 const Dashboard = ({ basket }) => {
   let word = 'элементов';
   const countItems = basket.length;
@@ -15,6 +17,7 @@ const Dashboard = ({ basket }) => {
     <div className="dashboard">
       <h2>Выбор элементов</h2>
       <p>На данный момент выбрано {`${countItems} ${word}`}.</p>
+      {countItems > 0 && <TagGroupContainer />}
       <button type="button">Изменить мой выбор</button>
     </div>
   );
