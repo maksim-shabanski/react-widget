@@ -33,7 +33,7 @@ Button.defaultProps = {
   className: '',
   variant: '',
   type: 'button',
-  onClick: () => { }, // eslint-disable-line
+  onClick: () => {},
 };
 
 export default Button;
