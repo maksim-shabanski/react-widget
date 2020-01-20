@@ -10,9 +10,9 @@ const Tags = ({ tags, onClick }) => {
 
   return (
     <div className="tags">
-      {tags.map(({ id, title }) => (
+      {tags.map(({ id, text }) => (
         <span key={id} className="tags__item">
-          {title}
+          {text}
           <button
             className="tags__close"
             type="button"

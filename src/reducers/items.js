@@ -2,7 +2,7 @@ import { SELECT_ITEM, CHANGE_ITEM } from 'constants/actionTypes';
 
 const initialState = [...new Array(300)].map((item, index) => ({
   id: index + 1,
-  title: `Элемент ${index + 1}`,
+  text: `Элемент ${index + 1}`,
   isChecked: false,
 }));
 

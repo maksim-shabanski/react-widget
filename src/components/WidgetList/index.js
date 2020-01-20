@@ -5,7 +5,7 @@ import { MAX_SELECTED_ITEMS } from 'constants/widget';
 
 const WidgetList = ({ filteredItems, selectedItems, itemChange }) => (
   <div className="widget__list">
-    {filteredItems.map(({ id, title }) => (
+    {filteredItems.map(({ id, text }) => (
       <div key={id} className="widget__item">
         <label htmlFor={`item-${id}`}>
           <input
@@ -18,7 +18,7 @@ const WidgetList = ({ filteredItems, selectedItems, itemChange }) => (
             }
             onChange={() => itemChange(id)}
           />
-          <span>{title}</span>
+          <span>{text}</span>
         </label>
       </div>
     ))}

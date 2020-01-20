@@ -52,9 +52,7 @@ const Widget = ({ items, selectItem, hideWidget }) => {
 
     const trimmedSearchText = searchText.trim();
     if (trimmedSearchText.length > 0) {
-      result = result.filter(
-        item => item.title.indexOf(trimmedSearchText) >= 0
-      );
+      result = result.filter(item => item.text.indexOf(trimmedSearchText) >= 0);
     }
 
     return result;
