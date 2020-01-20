@@ -9,7 +9,7 @@ const WidgetSearch = ({ searchText, onChange }) => (
         id="widget-search"
         type="text"
         value={searchText}
-        onChange={onChange}
+        onChange={e => onChange(e.target.value)}
       />
     </label>
   </div>

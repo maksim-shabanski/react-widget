@@ -1,21 +1,11 @@
-import {
-  SELECT_ITEM,
-  ADD_ITEM_TO_BASKET,
-  REMOVE_ITEM_FROM_BASKET,
-} from 'constants/actionTypes';
+import { SELECT_ITEM, CHANGE_ITEM } from 'constants/actionTypes';
 
-export const selectItem = id => ({
+export const selectItem = ids => ({
   type: SELECT_ITEM,
-  id,
+  ids,
 });
 
-export const addItemToBasket = (id, title) => ({
-  type: ADD_ITEM_TO_BASKET,
-  id,
-  title,
-});
-
-export const removeItemFromBasket = id => ({
-  type: REMOVE_ITEM_FROM_BASKET,
+export const changeItem = id => ({
+  type: CHANGE_ITEM,
   id,
 });

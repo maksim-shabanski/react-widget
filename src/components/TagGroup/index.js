@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 
 import Tag from 'components/Tag';
 
-const TagGroup = ({ basket, selectItem, removeItemFromBasket }) => {
+const TagGroup = ({ selectedItems, changeItem }) => {
   const handleButtonClick = id => {
-    selectItem(id);
-    removeItemFromBasket(id);
+    changeItem(id);
   };
 
   return (
     <div className="tag-group">
-      {basket.map(({ id, title }) => (
+      {selectedItems.map(({ id, title }) => (
         <Tag key={id} text={title} onClick={() => handleButtonClick(id)} />
       ))}
     </div>
@@ -19,9 +18,8 @@ const TagGroup = ({ basket, selectItem, removeItemFromBasket }) => {
 };
 
 TagGroup.propTypes = {
-  basket: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectItem: PropTypes.func.isRequired,
-  removeItemFromBasket: PropTypes.func.isRequired,
+  selectedItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  changeItem: PropTypes.func.isRequired,
 };
 
 export default TagGroup;

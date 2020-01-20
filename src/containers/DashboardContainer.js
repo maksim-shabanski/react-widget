@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { changeItem } from 'actions/actionCreators';
 import Dashboard from 'components/Dashboard';
 
 const DashboardContainer = props => <Dashboard {...props} />;
 
-const mapStateToProps = ({ basket }) => ({
-  basket,
+const mapStateToProps = ({ items }) => ({
+  items,
 });
 
-export default connect(mapStateToProps, null)(DashboardContainer);
+const mapDispatchToProps = dispatch => ({
+  changeItem: ids => dispatch(changeItem(ids)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

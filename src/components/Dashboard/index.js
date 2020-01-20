@@ -1,30 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TagGroupContainer from 'containers/TagGroupConteiner';
+import TagGroup from 'components/TagGroup';
 
-const Dashboard = ({ basket }) => {
-  const basketLength = basket.length;
+const Dashboard = ({ items, changeItem }) => {
+  const selectedItems = items.filter(item => item.isChecked);
+  const countSelectedItems = selectedItems.length;
   let endOfSentence = 'выбрано 0 элементов';
 
-  if (basketLength === 1) {
+  if (countSelectedItems === 1) {
     endOfSentence = 'выбран 1 элемент';
-  } else if (basketLength > 1) {
-    endOfSentence = `выбранo ${basketLength} элемента`;
+  } else if (countSelectedItems > 1) {
+    endOfSentence = `выбранo ${countSelectedItems} элемента`;
   }
 
   return (
     <div className="dashboard">
       <h2>Выбор элементов</h2>
       <p>На данный момент выбрано {endOfSentence}.</p>
-      {basketLength > 0 && <TagGroupContainer />}
+      {countSelectedItems > 0 && (
+        <TagGroup selectedItems={selectedItems} changeItem={changeItem} />
+      )}
       <button type="button">Изменить мой выбор</button>
     </div>
   );
 };
 
 Dashboard.propTypes = {
-  basket: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  changeItem: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
