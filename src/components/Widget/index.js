@@ -79,6 +79,7 @@ const Widget = ({ items, selectItem, hideWidget }) => {
             className="widget__close"
             type="button"
             aria-label="Закрыть виджет"
+            onClick={close}
           />
         </div>
         <div className="widget__body">
