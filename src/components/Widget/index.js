@@ -34,7 +34,7 @@ const Widget = ({ items, selectItem, hideWidget }) => {
   };
 
   const handleItemRemove = id => {
-    setSelectedItems(selectedItems.filter(value => value !== id));
+    setSelectedItems(selectedItems.filter(value => value !== id).sort());
   };
 
   const handleItemChange = id => {
@@ -43,7 +43,7 @@ const Widget = ({ items, selectItem, hideWidget }) => {
     if (isChecked) {
       handleItemRemove(id);
     } else if (selectedItems.length < MAX_SELECTED_ITEMS) {
-      setSelectedItems([...selectedItems, id]);
+      setSelectedItems([...selectedItems, id].sort());
     }
   };
 
