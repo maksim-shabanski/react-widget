@@ -10,7 +10,7 @@ const items = (state = initialState, { type, id, ids }) => {
   switch (type) {
     case SELECT_ITEM:
       return [...state].map(item => {
-        item.isChecked = ids.includes(item.id);
+        item.isChecked = ids.some(_item => _item.id === item.id);
         return item;
       });
     case CHANGE_ITEM:

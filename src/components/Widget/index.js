@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Tag from 'components/Tag';
 import WidgetSearch from 'components/WidgetSearch';
 import WidgetFilter from 'components/WidgetFilter';
 import WidgetItem from 'components/WidgetItem';
 import WidgetActions from 'components/WidgetActions';
+import WidgetTags from 'components/WidgetTags';
 import { MAX_SELECTED_ITEMS } from 'constants/widget';
 import './widget.scss';
 
 const Widget = ({ items, selectItem, hideWidget }) => {
   const [selectedItems, setSelectedItems] = useState(
-    items.filter(item => item.isChecked).map(item => item.id)
+    items.filter(item => item.isChecked)
   );
   const [minID, setMinID] = useState(0);
   const [searchText, setSearchText] = useState('');
@@ -34,16 +34,16 @@ const Widget = ({ items, selectItem, hideWidget }) => {
   };
 
   const handleItemRemove = id => {
-    setSelectedItems(selectedItems.filter(value => value !== id).sort());
+    setSelectedItems(selectedItems.filter(item => item.id !== id));
   };
 
   const handleItemChange = id => {
-    const isChecked = selectedItems.includes(id);
+    const isChecked = selectedItems.some(item => item.id === id);
 
     if (isChecked) {
       handleItemRemove(id);
     } else if (selectedItems.length < MAX_SELECTED_ITEMS) {
-      setSelectedItems([...selectedItems, id].sort());
+      setSelectedItems([...selectedItems, items[id - 1]]);
     }
   };
 
@@ -74,26 +74,20 @@ const Widget = ({ items, selectItem, hideWidget }) => {
             key={id}
             id={id}
             text={title}
-            isChecked={selectedItems.includes(id)}
+            isChecked={selectedItems.some(item => item.id === id)}
             isDisabled={
               selectedItems.length === MAX_SELECTED_ITEMS &&
-              !selectedItems.includes(id)
+              !selectedItems.some(item => item.id === id)
             }
             onChange={() => handleItemChange(id)}
           />
         ))}
       </div>
       <div className="widget__footer">
-        <div>
-          <p>Выбранные элементы на данный момент:</p>
-          {selectedItems.map(id => (
-            <Tag
-              key={id}
-              text={items[id].title}
-              onClick={() => handleItemRemove(id)}
-            />
-          ))}
-        </div>
+        <WidgetTags
+          tags={selectedItems}
+          removeSelectedItem={id => handleItemRemove(id)}
+        />
         <WidgetActions save={save} cancel={() => close()} />
       </div>
     </div>

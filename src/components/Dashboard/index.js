@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TagGroup from 'components/TagGroup';
+import Tags from 'components/Tags';
 import Button from 'components/Button';
 
 const Dashboard = ({ items, changeItem, showWidget }) => {
@@ -20,7 +20,7 @@ const Dashboard = ({ items, changeItem, showWidget }) => {
       <h2>Выбор элементов</h2>
       <p>На данный момент выбрано {endOfSentence}.</p>
       {countSelectedItems > 0 && (
-        <TagGroup selectedItems={selectedItems} changeItem={changeItem} />
+        <Tags tags={selectedItems} onClick={changeItem} />
       )}
       <Button variant="primary" onClick={() => showWidget()}>
         Изменить мой выбор
