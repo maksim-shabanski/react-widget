@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Tags from 'components/Tags';
 import Button from 'components/Button';
+import './dashboard.scss';
 
 const Dashboard = ({ items, changeItem, showWidget }) => {
   const selectedItems = items.filter(item => item.isChecked);
