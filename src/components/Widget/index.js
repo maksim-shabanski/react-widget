@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { MAX_SELECTED_ITEMS } from 'constants/widget';
 import WidgetSearch from 'components/WidgetSearch';
 import WidgetFilter from 'components/WidgetFilter';
-import WidgetItem from 'components/WidgetItem';
+import WidgetList from 'components/WidgetList';
 import WidgetActions from 'components/WidgetActions';
 import WidgetTags from 'components/WidgetTags';
-import { MAX_SELECTED_ITEMS } from 'constants/widget';
 import './widget.scss';
 
 const Widget = ({ items, selectItem, hideWidget }) => {
@@ -63,32 +63,38 @@ const Widget = ({ items, selectItem, hideWidget }) => {
   const filteredItems = filterItems();
 
   return (
-    <div className="widget">
-      <div className="widget__header">
-        <WidgetSearch searchText={searchText} onChange={handleSearchChange} />
-        <WidgetFilter onChange={handlerFilterChange} />
-      </div>
-      <div className="widget__body">
-        {filteredItems.map(({ id, title }) => (
-          <WidgetItem
-            key={id}
-            id={id}
-            text={title}
-            isChecked={selectedItems.some(item => item.id === id)}
-            isDisabled={
-              selectedItems.length === MAX_SELECTED_ITEMS &&
-              !selectedItems.some(item => item.id === id)
-            }
-            onChange={() => handleItemChange(id)}
+    <div className="modal">
+      <div className="modal__bg" />
+      <div className="widget">
+        <div className="widget__header">
+          <h3 className="widget__title">Диалог выбора элементов</h3>
+          <div className="widget__filters">
+            <WidgetSearch
+              searchText={searchText}
+              onChange={handleSearchChange}
+            />
+            <WidgetFilter onChange={handlerFilterChange} />
+          </div>
+          <button
+            className="widget__close"
+            type="button"
+            aria-label="Закрыть виджет"
           />
-        ))}
-      </div>
-      <div className="widget__footer">
-        <WidgetTags
-          tags={selectedItems}
-          removeSelectedItem={id => handleItemRemove(id)}
-        />
-        <WidgetActions save={save} cancel={() => close()} />
+        </div>
+        <div className="widget__body">
+          <WidgetList
+            filteredItems={filteredItems}
+            selectedItems={selectedItems}
+            itemChange={id => handleItemChange(id)}
+          />
+        </div>
+        <div className="widget__footer">
+          <WidgetTags
+            tags={selectedItems}
+            removeSelectedItem={id => handleItemRemove(id)}
+          />
+          <WidgetActions save={save} cancel={() => close()} />
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ const WidgetSearch = ({ searchText, onChange }) => (
       Поиск
       <input
         id="widget-search"
+        className="widget__input"
         type="text"
         value={searchText}
         onChange={e => onChange(e.target.value)}
