@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Button from 'components/Button';
+
 const WidgetActions = ({ save, cancel }) => (
   <div className="widget__actions">
-    <button type="button" onClick={save}>
+    <Button variant="primary" onClick={save}>
       Сохранить
-    </button>
-    <button type="button" onClick={cancel}>
+    </Button>
+    <Button variant="danger" onClick={cancel}>
       Отменить
-    </button>
+    </Button>
   </div>
 );
 

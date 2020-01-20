@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TagGroup from 'components/TagGroup';
+import Button from 'components/Button';
 
 const Dashboard = ({ items, changeItem, showWidget }) => {
   const selectedItems = items.filter(item => item.isChecked);
@@ -21,9 +22,9 @@ const Dashboard = ({ items, changeItem, showWidget }) => {
       {countSelectedItems > 0 && (
         <TagGroup selectedItems={selectedItems} changeItem={changeItem} />
       )}
-      <button type="button" onClick={() => showWidget()}>
+      <Button variant="primary" onClick={() => showWidget()}>
         Изменить мой выбор
-      </button>
+      </Button>
     </div>
   );
 };
