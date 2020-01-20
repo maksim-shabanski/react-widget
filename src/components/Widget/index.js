@@ -9,20 +9,20 @@ import WidgetActions from 'components/WidgetActions';
 import { MAX_SELECTED_ITEMS } from 'constants/widget';
 import './widget.scss';
 
-const Widget = ({ items, selectItem }) => {
+const Widget = ({ items, selectItem, hideWidget }) => {
   const [selectedItems, setSelectedItems] = useState(
     items.filter(item => item.isChecked).map(item => item.id)
   );
   const [minID, setMinID] = useState(0);
   const [searchText, setSearchText] = useState('');
 
-  const save = () => {
-    selectItem(selectedItems);
-    // modal close
+  const close = () => {
+    hideWidget();
   };
 
-  const cancel = () => {
-    // modal close
+  const save = () => {
+    selectItem(selectedItems);
+    close();
   };
 
   const handleSearchChange = value => {
@@ -94,7 +94,7 @@ const Widget = ({ items, selectItem }) => {
             />
           ))}
         </div>
-        <WidgetActions save={save} cancel={cancel} />
+        <WidgetActions save={save} cancel={() => close()} />
       </div>
     </div>
   );
@@ -103,6 +103,7 @@ const Widget = ({ items, selectItem }) => {
 Widget.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectItem: PropTypes.func.isRequired,
+  hideWidget: PropTypes.func.isRequired,
 };
 
 export default Widget;

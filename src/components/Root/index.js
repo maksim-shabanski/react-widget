@@ -1,15 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import WidgetContainer from 'containers/WidgetContainer';
 import DashboardContainer from 'containers/DashboardContainer';
 
-const Root = () => {
+const Root = ({ isWidgetActive }) => {
   return (
     <main>
       <DashboardContainer />
-      <WidgetContainer />
+      {isWidgetActive && <WidgetContainer />}
     </main>
   );
+};
+
+Root.propTypes = {
+  isWidgetActive: PropTypes.bool.isRequired,
 };
 
 export default Root;

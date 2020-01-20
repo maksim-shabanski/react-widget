@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import TagGroup from 'components/TagGroup';
 
-const Dashboard = ({ items, changeItem }) => {
+const Dashboard = ({ items, changeItem, showWidget }) => {
   const selectedItems = items.filter(item => item.isChecked);
   const countSelectedItems = selectedItems.length;
   let endOfSentence = 'выбрано 0 элементов';
@@ -21,7 +21,9 @@ const Dashboard = ({ items, changeItem }) => {
       {countSelectedItems > 0 && (
         <TagGroup selectedItems={selectedItems} changeItem={changeItem} />
       )}
-      <button type="button">Изменить мой выбор</button>
+      <button type="button" onClick={() => showWidget()}>
+        Изменить мой выбор
+      </button>
     </div>
   );
 };
@@ -29,6 +31,7 @@ const Dashboard = ({ items, changeItem }) => {
 Dashboard.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   changeItem: PropTypes.func.isRequired,
+  showWidget: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
