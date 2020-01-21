@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectItem, hideWidget } from 'actions/actionCreators';
+import { selectItems, hideWidget } from 'actions/actionCreators';
 import Widget from 'components/Widget';
 
 const WidgetContainer = props => <Widget {...props} />;
@@ -11,7 +11,7 @@ const mapStateToProps = ({ items }) => ({
 });
 
 const mapdDispatchToProps = dispacth => ({
-  selectItem: ids => dispacth(selectItem(ids)),
+  selectItems: selectedItems => dispacth(selectItems(selectedItems)),
   hideWidget: () => dispacth(hideWidget()),
 });
 

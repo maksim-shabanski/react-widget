@@ -1,6 +1,6 @@
 /* Items */
-export const SELECT_ITEM = 'SELECT_ITEM';
-export const CHANGE_ITEM = 'CHANGE_ITEM';
+export const SELECT_ITEMS = 'SELECT_ITEMS';
+export const DESELECT_ITEM = 'DESELECT_ITEM';
 
 /* Widget */
 export const SHOW_WIDGET = 'SHOW_WIDGET';

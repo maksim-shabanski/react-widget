@@ -1,17 +1,17 @@
 import {
-  SELECT_ITEM,
-  CHANGE_ITEM,
+  SELECT_ITEMS,
+  DESELECT_ITEM,
   SHOW_WIDGET,
   HIDE_WIDGET,
 } from 'constants/actionTypes';
 
-export const selectItem = ids => ({
-  type: SELECT_ITEM,
-  ids,
+export const selectItems = selectedItems => ({
+  type: SELECT_ITEMS,
+  selectedItems,
 });
 
-export const changeItem = id => ({
-  type: CHANGE_ITEM,
+export const deselectItem = id => ({
+  type: DESELECT_ITEM,
   id,
 });
 

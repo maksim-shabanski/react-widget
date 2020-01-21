@@ -5,7 +5,7 @@ import Tags from 'components/Tags';
 import Button from 'components/Button';
 import './dashboard.scss';
 
-const Dashboard = ({ items, changeItem, showWidget }) => {
+const Dashboard = ({ items, deselectItem, showWidget }) => {
   const selectedItems = items.filter(item => item.isChecked);
   const countSelectedItems = selectedItems.length;
   let endOfSentence = 'выбрано 0 элементов';
@@ -13,7 +13,7 @@ const Dashboard = ({ items, changeItem, showWidget }) => {
   if (countSelectedItems === 1) {
     endOfSentence = 'выбран 1 элемент';
   } else if (countSelectedItems > 1) {
-    endOfSentence = `выбранo ${countSelectedItems} элемента`;
+    endOfSentence = `выбрано ${countSelectedItems} элемента`;
   }
 
   return (
@@ -21,9 +21,9 @@ const Dashboard = ({ items, changeItem, showWidget }) => {
       <h2>Выбор элементов</h2>
       <p>На данный момент выбрано {endOfSentence}.</p>
       {countSelectedItems > 0 && (
-        <Tags tags={selectedItems} onClick={changeItem} />
+        <Tags tags={selectedItems} onClick={deselectItem} />
       )}
-      <Button variant="primary" onClick={() => showWidget()}>
+      <Button variant="primary" onClick={showWidget}>
         Изменить мой выбор
       </Button>
     </div>
@@ -32,7 +32,7 @@ const Dashboard = ({ items, changeItem, showWidget }) => {
 
 Dashboard.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  changeItem: PropTypes.func.isRequired,
+  deselectItem: PropTypes.func.isRequired,
   showWidget: PropTypes.func.isRequired,
 };
 

@@ -6,17 +6,17 @@ import DashboardContainer from 'containers/DashboardContainer';
 
 import './root.scss';
 
-const Root = ({ isWidgetActive }) => {
+const Root = ({ isWidgetOpened }) => {
   return (
     <main>
       <DashboardContainer />
-      {isWidgetActive && <WidgetContainer />}
+      {isWidgetOpened && <WidgetContainer />}
     </main>
   );
 };
 
 Root.propTypes = {
-  isWidgetActive: PropTypes.bool.isRequired,
+  isWidgetOpened: PropTypes.bool.isRequired,
 };
 
 export default Root;

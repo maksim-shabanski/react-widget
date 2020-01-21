@@ -9,11 +9,11 @@ import WidgetActions from 'components/WidgetActions';
 import WidgetTags from 'components/WidgetTags';
 import './widget.scss';
 
-const Widget = ({ items, selectItem, hideWidget }) => {
+const Widget = ({ items, selectItems, hideWidget }) => {
   const [selectedItems, setSelectedItems] = useState(
     items.filter(item => item.isChecked)
   );
-  const [minID, setMinID] = useState(0);
+  const [filteredMinID, setFilteredMinID] = useState();
   const [searchText, setSearchText] = useState('');
 
   const close = () => {
@@ -21,16 +21,8 @@ const Widget = ({ items, selectItem, hideWidget }) => {
   };
 
   const save = () => {
-    selectItem(selectedItems);
+    selectItems(selectedItems);
     close();
-  };
-
-  const handleSearchChange = value => {
-    setSearchText(value);
-  };
-
-  const handlerFilterChange = value => {
-    setMinID(value);
   };
 
   const handleItemRemove = id => {
@@ -43,16 +35,22 @@ const Widget = ({ items, selectItem, hideWidget }) => {
     if (isChecked) {
       handleItemRemove(id);
     } else if (selectedItems.length < MAX_SELECTED_ITEMS) {
-      setSelectedItems([...selectedItems, items[id - 1]]);
+      const item = items.find(_item => _item.id === id);
+      setSelectedItems([...selectedItems, item]);
     }
   };
 
   const filterItems = () => {
-    let result = items.filter(item => item.id > minID);
+    let result = items;
+    if (filteredMinID) {
+      result = items.filter(item => item.id > filteredMinID);
+    }
 
     const trimmedSearchText = searchText.trim();
     if (trimmedSearchText.length > 0) {
-      result = result.filter(item => item.text.indexOf(trimmedSearchText) >= 0);
+      result = result.filter(
+        item => item.text.indexOf(trimmedSearchText) !== -1
+      );
     }
 
     return result;
@@ -67,11 +65,8 @@ const Widget = ({ items, selectItem, hideWidget }) => {
         <div className="widget__header">
           <h3 className="widget__title">Диалог выбора элементов</h3>
           <div className="widget__filters">
-            <WidgetSearch
-              searchText={searchText}
-              onChange={handleSearchChange}
-            />
-            <WidgetFilter onChange={handlerFilterChange} />
+            <WidgetSearch searchText={searchText} onChange={setSearchText} />
+            <WidgetFilter onChange={setFilteredMinID} />
           </div>
           <button
             className="widget__close"
@@ -81,16 +76,20 @@ const Widget = ({ items, selectItem, hideWidget }) => {
           />
         </div>
         <div className="widget__body">
-          <WidgetList
-            filteredItems={filteredItems}
-            selectedItems={selectedItems}
-            itemChange={id => handleItemChange(id)}
-          />
+          {filteredItems.length > 0 ? (
+            <WidgetList
+              filteredItems={filteredItems}
+              selectedItems={selectedItems}
+              itemChange={handleItemChange}
+            />
+          ) : (
+            'Нет совпадений'
+          )}
         </div>
         <div className="widget__footer">
           <WidgetTags
             tags={selectedItems}
-            removeSelectedItem={id => handleItemRemove(id)}
+            removeSelectedItem={handleItemRemove}
           />
           <WidgetActions save={save} cancel={() => close()} />
         </div>
@@ -101,7 +100,7 @@ const Widget = ({ items, selectItem, hideWidget }) => {
 
 Widget.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectItem: PropTypes.func.isRequired,
+  selectItems: PropTypes.func.isRequired,
   hideWidget: PropTypes.func.isRequired,
 };
 

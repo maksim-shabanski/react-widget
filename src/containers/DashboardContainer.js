@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeItem, showWidget } from 'actions/actionCreators';
+import { deselectItem, showWidget } from 'actions/actionCreators';
 import Dashboard from 'components/Dashboard';
 
 const DashboardContainer = props => <Dashboard {...props} />;
@@ -11,7 +11,7 @@ const mapStateToProps = ({ items }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeItem: ids => dispatch(changeItem(ids)),
+  deselectItem: id => dispatch(deselectItem(id)),
   showWidget: () => dispatch(showWidget()),
 });
 

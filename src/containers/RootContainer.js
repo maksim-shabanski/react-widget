@@ -6,8 +6,8 @@ import Root from 'components/Root';
 
 const RootContainer = props => <Root {...props} />;
 
-const mapStateToProps = ({ isWidgetActive }) => ({
-  isWidgetActive,
+const mapStateToProps = ({ isWidgetOpened }) => ({
+  isWidgetOpened,
 });
 
 const mapdDispatchToProps = dispacth => ({
