@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './dashboard.scss';
 import Tags from 'components/Tags';
 import Button from 'components/Button';
-import './dashboard.scss';
 
 const Dashboard = ({ items, deselectItem, showWidget }) => {
   const selectedItems = items.filter(item => item.isChecked);

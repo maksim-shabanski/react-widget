@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './root.scss';
 import WidgetContainer from 'containers/WidgetContainer';
 import DashboardContainer from 'containers/DashboardContainer';
-
-import './root.scss';
 
 const Root = ({ isWidgetOpened }) => {
   return (

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import './widget.scss';
 import { MAX_SELECTED_ITEMS } from 'constants/widget';
 import WidgetSearch from 'components/WidgetSearch';
 import WidgetFilter from 'components/WidgetFilter';
 import WidgetList from 'components/WidgetList';
 import WidgetActions from 'components/WidgetActions';
 import WidgetTags from 'components/WidgetTags';
-import './widget.scss';
 
 const Widget = ({ items, selectItems, hideWidget }) => {
   const [selectedItems, setSelectedItems] = useState(
