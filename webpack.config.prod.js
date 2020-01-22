@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssoWebpackPlugin = require('csso-webpack-plugin').default;
 const TerserJSPlugin = require('terser-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -51,7 +51,7 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserJSPlugin(), new CssoWebpackPlugin()],
     splitChunks: {
       cacheGroups: {
         styles: {
