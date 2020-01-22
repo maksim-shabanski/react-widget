@@ -6,9 +6,9 @@ import Button from 'components/Button';
 const WidgetActions = ({ save, cancel }) => (
   <div className="widget__actions">
     <Button variant="success" onClick={save}>
-      Сохранить
+      Save
     </Button>
-    <Button onClick={cancel}>Отменить</Button>
+    <Button onClick={cancel}>Cancel</Button>
   </div>
 );
 

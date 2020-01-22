@@ -8,23 +8,19 @@ import Button from 'components/Button';
 const Dashboard = ({ items, deselectItem, showWidget }) => {
   const selectedItems = items.filter(item => item.isChecked);
   const countSelectedItems = selectedItems.length;
-  let endOfSentence = 'выбрано 0 элементов';
-
-  if (countSelectedItems === 1) {
-    endOfSentence = 'выбран 1 элемент';
-  } else if (countSelectedItems > 1) {
-    endOfSentence = `выбрано ${countSelectedItems} элемента`;
-  }
 
   return (
     <div className="dashboard">
-      <h2>Выбор элементов</h2>
-      <p>На данный момент выбрано {endOfSentence}.</p>
+      <h2>Item selection</h2>
+      <p>
+        Currently selected {countSelectedItems}
+        {countSelectedItems === 1 ? ' item' : ' items'}.
+      </p>
       {countSelectedItems > 0 && (
         <Tags tags={selectedItems} onClick={deselectItem} />
       )}
       <Button variant="primary" onClick={showWidget}>
-        Изменить мой выбор
+        Change my choice
       </Button>
     </div>
   );

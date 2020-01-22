@@ -63,7 +63,7 @@ const Widget = ({ items, selectItems, hideWidget }) => {
       <div className="modal__bg" />
       <div className="widget">
         <div className="widget__header">
-          <h3 className="widget__title">Диалог выбора элементов</h3>
+          <h3 className="widget__title">Element selection dialog</h3>
           <div className="widget__filters">
             <WidgetSearch searchText={searchText} onChange={setSearchText} />
             <WidgetFilter onChange={setFilteredMinID} />
@@ -71,7 +71,7 @@ const Widget = ({ items, selectItems, hideWidget }) => {
           <button
             className="widget__close"
             type="button"
-            aria-label="Закрыть виджет"
+            aria-label="Close dialog"
             onClick={close}
           />
         </div>
@@ -83,7 +83,7 @@ const Widget = ({ items, selectItems, hideWidget }) => {
               itemChange={handleItemChange}
             />
           ) : (
-            'Нет совпадений'
+            'No matches'
           )}
         </div>
         <div className="widget__footer">

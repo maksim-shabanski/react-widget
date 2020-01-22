@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const WidgetSearch = ({ searchText, onChange }) => (
   <div className="widget__search">
     <label htmlFor="widget-search">
-      Поиск
+      Search
       <input
         id="widget-search"
         className="widget__input"

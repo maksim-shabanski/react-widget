@@ -17,7 +17,7 @@ const Tags = ({ tags, onClick }) => {
             className="tags__close"
             type="button"
             onClick={() => handleButtonClick(id)}
-            aria-label="Удалить"
+            aria-label="Delete tag"
           />
         </span>
       ))}

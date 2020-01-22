@@ -12,11 +12,11 @@ const WidgetTags = ({ tags, removeSelectedItem }) => {
     <div className="widget__tags">
       {tags.length > 0 ? (
         <>
-          <p>Выбранные элементы на данный момент:</p>
+          <p>Currently selected items:</p>
           <Tags tags={tags} onClick={id => handleButtonClick(id)} />
         </>
       ) : (
-        <p>Нет выбранных элементов на данный момент.</p>
+        <p>No items selected at the moment.</p>
       )}
     </div>
   );
